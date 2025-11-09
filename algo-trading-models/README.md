@@ -86,13 +86,13 @@ Every month:
 
 RESEARCH GOAL
 ================================
-Can technical indicators derived from daily SP500 constituent data predict short-term (1-5 day) price direction better than random or naive baselines?
+Can technical indicators derived from daily SP500 constituent data predict short-term (1-5 day) price direction better than random or naive baselines?.
 
 Recordings
 ================================
-   Random backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields -0.50% ($995.03)
-   Naive backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields +46.3% ($1463.08)
-   Logistic Regression yields a 52.4 % accuracy
-   XGBoost yields a 53% accuracy
+   Random backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields -0.50% ($995.03).
+   Naive backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields +46.3% ($1463.08).
+   Logistic Regression yields a 52.4 % accuracy.
+   XGBoost yields a 53% accuracy.
 
-Additional Indicators to consider: hma, zlhma
+Additional Indicators to consider: hma, zlhma.
