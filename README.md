@@ -1,0 +1,1 @@
+This repo contains some of the projects I've been working on in regards to Machine Learning, it is a mixture of ISL Projects, as well as personal projects such as the Algorithmic Trading Model which is a comprehensive project covering several aspects of machine learning (Classification & Regression)
