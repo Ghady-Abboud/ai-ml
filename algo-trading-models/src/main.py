@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
   # bt.backtest_strategy(naive_df)
   # bt.backtest_strategy(random_df, signal_col="RANDOM_SIGNAL")
-  print("Backtesting completed.")
+  # print("Backtesting completed.")
 
   model = ml.Model(df)
   model.run()

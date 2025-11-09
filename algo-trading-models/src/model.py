@@ -4,6 +4,7 @@ import xgboost as xgb
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 
 class Model:
@@ -18,19 +19,19 @@ class Model:
     self.df["TARGET_RETURN"] = self.df.groupby("Ticker")["Close"].pct_change().shift(-1)
     self.df["TARGET_DIRECTION"] = (self.df["TARGET_RETURN"] > 0).astype(int)
     self.df.dropna(inplace=True)
-    print(self.df.columns)
 
   def logRegression(self):
-    from sklearn.linear_model import LogisticRegression
-    model = LogisticRegression(max_iter=1000, random_state=42)
+    scaler = StandardScaler()
+    self.X_train = scaler.fit_transform(self.X_train)
+    self.X_test = scaler.transform(self.X_test)
+    model = LogisticRegression(
+      max_iter=100,
+      random_state=42,
+      C=0.01)
     model.fit(self.X_train, self.y_train)
     return model
   
   def plot_xgb_learning_curve(self, params=None):
-    """
-    Plot learning curves from xgb.cv to visualize overfitting and optimal trees.
-    This helps you see if your model is underfitting or overfitting.
-    """
     if params is None:
       params = {
         'objective': 'binary:logistic',
@@ -168,7 +169,6 @@ class Model:
     return best_params
 
   def _plot_tuning_results(self, results_df):
-    """Plot parameter tuning results to visualize relationships."""
     _, axes = plt.subplots(2, 2, figsize=(14, 10))
 
     # 1. Max depth vs LogLoss
@@ -228,26 +228,13 @@ class Model:
     return model
 
   def run(self):
-    """
-    Perform time series cross-validation to evaluate model performance.
-
-    This trains 30 models (one per fold) and averages their performance.
-    This is STANDARD practice in ML to get robust performance estimates.
-
-    Yes, it trains 30 models, but:
-    - Each model trains in ~5-10 seconds (Logistic Regression is fast)
-    - Total time: ~5-10 minutes (acceptable for research)
-    - Result: Honest, robust performance metric
-    """
-
     print("\n=== Time Series Cross-Validation ===")
 
-    exclude_cols = ['Date', 'Ticker', 'Close', 'Open', 'High', 'Low', 'Volume', 'TARGET_RETURN', 'TARGET_DIRECTION']
-    feature_cols = [col for col in self.df.columns if col not in exclude_cols]
-
     self.create_labels()    
-    X = self.df[feature_cols].values
+    exclude_cols = ['Date', 'Ticker', 'Close', 'Open', 'High', 'Low', 'Volume', 'TARGET_RETURN', 'TARGET_DIRECTION']
     y = self.df['TARGET_DIRECTION'].values
+    self.df.drop(columns=exclude_cols, inplace=True)
+    X = self.df.values
 
     cv = TimeSeriesSplit(gap=0, max_train_size=None, n_splits=20)
 
@@ -270,7 +257,7 @@ class Model:
       fold_precisions.append(prec)
       fold_recalls.append(rec)
 
-      if fold_num % 10 == 0:
+      if fold_num % 10 == 0 :
         print(f"  Fold {fold_num}/30 - Accuracy: {acc:.3f}, Precision: {prec:.3f}, Recall: {rec:.3f}")
 
     avg_accuracy = np.mean(fold_accuracies)

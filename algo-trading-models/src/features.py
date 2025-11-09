@@ -37,6 +37,7 @@ class FeatureEngineer:
     self.compute_bbands(df)
     self.compute_macd(df)
     self.compute_obv(df)
+    self.compute_returns(df)
     self.normalize_columns(df, self.features)
     return df
 
@@ -53,7 +54,9 @@ class FeatureEngineer:
   def compute_rsi(self, df):
     d = 14
     df["RSI_14"] = ta.RSI(df["Close"], timeperiod=d)
-    self.features.append("RSI_14")
+    df["RSI_CHANGE_1D"] = df.groupby("Ticker")["RSI_14"].pct_change(1)
+    df["RSI_CHANGE_5D"] = df.groupby("Ticker")["RSI_14"].pct_change(5)
+    self.features.extend(["RSI_14", "RSI_CHANGE_1D", "RSI_CHANGE_5D"])
     return df
 
   def compute_natr(self, df):
@@ -87,4 +90,11 @@ class FeatureEngineer:
   def compute_obv(self, df):
     df['OBV'] = ta.OBV(df['Close'], df['Volume'])
     self.features.append("OBV")
+    return df
+  
+  def compute_returns(self, df):
+    df["RETURN_1D"] = df.groupby("Ticker")["Close"].pct_change(1)
+    df["RETURN_5D"] = df.groupby("Ticker")["Close"].pct_change(5)
+    df["RETURN_60D"] = df.groupby("Ticker")["Close"].pct_change(60)
+    self.features.extend(["RETURN_1D", "RETURN_5D", "RETURN_60D"])
     return df
