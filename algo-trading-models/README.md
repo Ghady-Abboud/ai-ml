@@ -1,4 +1,4 @@
-US STOCKS MACHINE LEARNING TRADING SYSTEM — PROJECT BLUEPRINT
+US STOCKS MACHINE LEARNING TRADING SYSTEM
 
 STAGE 1 – DATA ACQUISITION
 ================================
@@ -18,7 +18,6 @@ Program should:
 1. Compute technical indicators (returns, rolling mean/std, RSI, MACD, etc.).
 2. Add lag features (1 d, 5 d, 20 d returns).
 3. Normalize or z-score features per symbol.
-4. Save to features/{symbol}.parquet.
 
 STAGE 3 – LABEL CREATION
 ================================
