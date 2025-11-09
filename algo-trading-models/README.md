@@ -55,7 +55,6 @@ Program should:
 4. Plot equity curve.
 5. Log metrics to results/.
 
-================================
 STAGE 6 – LIVE INFERENCE
 ================================
 Goal: deploy daily prediction loop.
