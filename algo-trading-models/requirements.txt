@@ -1,0 +1,8 @@
+numpy
+yfinance
+matplotlib
+pandas
+ipykernel
+scikit-learn
+PyYAML
+xgboost
