@@ -1,6 +1,5 @@
 US STOCKS MACHINE LEARNING TRADING SYSTEM — PROJECT BLUEPRINT
 
-================================
 STAGE 1 – DATA ACQUISITION
 ================================
 Goal: get clean historical OHLCV data for all S&P 500 symbols.
@@ -11,7 +10,6 @@ Program should:
 3. Store raw CSVs locally (data/raw/).
 Output: pandas.DataFrame with [Open, High, Low, Close, Volume].
 
-================================
 STAGE 2 – FEATURE GENERATION
 ================================
 Goal: numeric predictors for each date.
@@ -22,7 +20,6 @@ Program should:
 3. Normalize or z-score features per symbol.
 4. Save to features/{symbol}.parquet.
 
-================================
 STAGE 3 – LABEL CREATION
 ================================
 Goal: create supervised-learning target.
@@ -34,7 +31,6 @@ Program should:
    - classification target → 1 if r_{t+1} > 0 else 0
 3. Align features so labels are forward-shifted.
 
-================================
 STAGE 4 – MODEL TRAINING
 ================================
 Goal: per-symbol or pooled model that predicts next-day direction.
@@ -48,7 +44,6 @@ Program should:
 3. Evaluate metrics (accuracy, precision, Sharpe).
 4. Save best model artifact (models/{symbol}.pkl).
 
-================================
 STAGE 5 – BACKTESTING
 ================================
 Goal: simulate trading using predictions.
@@ -71,7 +66,6 @@ Program should:
 3. Load trained model, predict next-day move.
 4. Record to a signals.csv.
 
-================================
 STAGE 7 – ALERTING / MONITORING
 ================================
 Goal: deliver actionable info, not manual trades.
@@ -82,7 +76,6 @@ Program should:
 3. Log timestamp + predictions.
 4. Run automatically via cron job or cloud function once per day.
 
-================================
 STAGE 8 – RESEARCH LOOP
 ================================
 Goal: continuous improvement.
@@ -93,12 +86,10 @@ Every month:
 - Compare performance vs baseline.
 - Archive experiment configs.
 
-================================
 RESEARCH GOAL
 ================================
 Can technical indicators derived from daily SP500 constituent data predict short-term (1-5 day) price direction better than random or naive baselines?
 
-================================
 Recordings
 ================================
    Random backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields -0.50% ($995.03)
@@ -106,6 +97,4 @@ Recordings
    Logistic Regression yields a 52.4 % accuracy
    XGBoost yields a 53% accuracy
 
-
-
-hma, zlhma
+Additional Indicators to consider: hma, zlhma
