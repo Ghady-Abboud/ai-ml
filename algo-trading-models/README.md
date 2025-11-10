@@ -1,4 +1,4 @@
-US STOCKS MACHINE LEARNING TRADING SYSTEM — PROJECT BLUEPRINT
+US STOCKS MACHINE LEARNING TRADING SYSTEM
 
 STAGE 1 – DATA ACQUISITION
 ================================
@@ -18,7 +18,6 @@ Program should:
 1. Compute technical indicators (returns, rolling mean/std, RSI, MACD, etc.).
 2. Add lag features (1 d, 5 d, 20 d returns).
 3. Normalize or z-score features per symbol.
-4. Save to features/{symbol}.parquet.
 
 STAGE 3 – LABEL CREATION
 ================================
@@ -87,7 +86,7 @@ Every month:
 
 RESEARCH GOAL
 ================================
-Can technical indicators derived from daily SP500 constituent data predict short-term (1-5 day) price direction better than random or naive baselines?
+Can technical indicators derived from daily SP500 constituent data predict short-term (1-5 day) price direction better than random or naive baselines?.
 
 Recordings
 ================================
@@ -95,6 +94,18 @@ Recordings
    Naive backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields +46.3% ($1463.08)
    Logistic Regression yields a 52.4 % accuracy
    XGBoost yields a 53% accuracy
+
+   Logistic Regression Backtest:
+   - Initial Capital: $1000
+   - Training occurred from 2019-01-01 to 2023-01-01
+      Final Portfolio Value: $2911.10
+      Total Return: 191.11%
+   
+   XGBoost Backtest:
+   - Initial Capital: $1000
+   - Training occurred from 2019-01-01 to 2023-01-01
+      Final Portfolio Value: $5678.89
+      Total Return: 467.89%
 
    Logistic Regression Backtest:
    - Initial Capital: $1000
