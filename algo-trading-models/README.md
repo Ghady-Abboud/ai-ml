@@ -96,4 +96,16 @@ Recordings
    Logistic Regression yields a 52.4 % accuracy
    XGBoost yields a 53% accuracy
 
+   Logistic Regression Backtest:
+   - Initial Capital: $1000
+   - Training occurred from 2019-01-01 to 2023-01-01
+      Final Portfolio Value: $2911.10
+      Total Return: 191.11%
+   
+   XGBoost Backtest:
+   - Initial Capital: $1000
+   - Training occurred from 2019-01-01 to 2023-01-01
+      Final Portfolio Value: $5678.89
+      Total Return: 467.89%
+
 Additional Indicators to consider: hma, zlhma

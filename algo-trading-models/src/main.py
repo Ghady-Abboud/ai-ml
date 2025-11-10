@@ -27,4 +27,5 @@ if __name__ == "__main__":
   # print("Backtesting completed.")
 
   model = ml.Model(df)
-  model.run()
+  # model.run()
+  model.backtest()

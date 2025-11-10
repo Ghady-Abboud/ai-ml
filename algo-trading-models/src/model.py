@@ -227,6 +227,56 @@ class Model:
     model.fit(self.X_train, self.y_train)
     return model
 
+  def backtest(self, train_end_date='2023-01-01'):
+    import backtest as bt
+
+    self.create_labels()
+    exclude_cols = ['Date', 'Ticker', 'Close', 'Open', 'High', 'Low', 'Volume', 'TARGET_RETURN', 'TARGET_DIRECTION']
+    feature_cols = [col for col in self.df.columns if col not in exclude_cols]
+
+    # Split by date
+    train_mask = pd.to_datetime(self.df['Date']) < pd.to_datetime(train_end_date)
+
+    X_train = self.df.loc[train_mask, feature_cols].values
+    y_train = self.df.loc[train_mask, 'TARGET_DIRECTION'].values
+    X_full = self.df[feature_cols].values
+
+    # Train Logistic Regression on historical data only
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_full_scaled = scaler.transform(X_full)
+
+    logit = LogisticRegression(max_iter=100, random_state=42, C=0.01)
+    logit.fit(X_train_scaled, y_train)
+    logit_pred = logit.predict(X_full_scaled)
+
+    # Train XGBoost on historical data only
+    xgb_model = xgb.XGBClassifier(
+      objective='binary:logistic',
+      eval_metric='logloss',
+      learning_rate=0.05,
+      max_depth=3,
+      colsample_bytree=0.8,
+      n_estimators=118,
+    )
+    xgb_model.fit(X_train, y_train)
+    xgb_pred = xgb_model.predict(X_full)
+
+    # Add signal columns (convert 0/1 to -1/1)
+    self.df['LOGIT_SIGNAL'] = np.where(logit_pred == 1, 1, -1)
+    self.df['XGB_SIGNAL'] = np.where(xgb_pred == 1, 1, -1)
+
+    print(f"\nTrain period: {self.df[train_mask]['Date'].min()} to {self.df[train_mask]['Date'].max()}")
+    print(f"Test period: {self.df[~train_mask]['Date'].min()} to {self.df[~train_mask]['Date'].max()}")
+    print(f"Train samples: {X_train.shape[0]}, Test samples: {(~train_mask).sum()}")
+
+    # Backtest both
+    print("\n=== Logistic Regression Backtest ===")
+    bt.backtest_strategy(self.df.copy(), signal_col="LOGIT_SIGNAL")
+
+    print("\n=== XGBoost Backtest ===")
+    bt.backtest_strategy(self.df.copy(), signal_col="XGB_SIGNAL")
+
   def run(self):
     print("\n=== Time Series Cross-Validation ===")
 
