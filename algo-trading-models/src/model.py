@@ -270,21 +270,23 @@ class Model:
     print(f"Test period: {self.df[~train_mask]['Date'].min()} to {self.df[~train_mask]['Date'].max()}")
     print(f"Train samples: {X_train.shape[0]}, Test samples: {(~train_mask).sum()}")
 
-    # Backtest both
-    print("\n=== Logistic Regression Backtest ===")
-    bt.backtest_strategy(self.df.copy(), signal_col="LOGIT_SIGNAL")
+    # Backtest ONLY on test period (out-of-sample)
+    test_df = self.df[~train_mask].copy()
 
-    print("\n=== XGBoost Backtest ===")
-    bt.backtest_strategy(self.df.copy(), signal_col="XGB_SIGNAL")
+    print("\n=== Logistic Regression Backtest (Out-of-Sample Only) ===")
+    bt.backtest_strategy(test_df, signal_col="LOGIT_SIGNAL")
+
+    print("\n=== XGBoost Backtest (Out-of-Sample Only) ===")
+    bt.backtest_strategy(test_df.copy(), signal_col="XGB_SIGNAL")
 
   def run(self):
     print("\n=== Time Series Cross-Validation ===")
 
-    self.create_labels()    
+    self.create_labels()
     exclude_cols = ['Date', 'Ticker', 'Close', 'Open', 'High', 'Low', 'Volume', 'TARGET_RETURN', 'TARGET_DIRECTION']
     y = self.df['TARGET_DIRECTION'].values
-    self.df.drop(columns=exclude_cols, inplace=True)
-    X = self.df.values
+    feature_df = self.df.drop(columns=exclude_cols)
+    X = feature_df.values
 
     cv = TimeSeriesSplit(gap=0, max_train_size=None, n_splits=20)
 

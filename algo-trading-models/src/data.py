@@ -17,12 +17,12 @@ def grab_tickers():
           parsing the page.
   """
   url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
-  headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:144.0) Gecko/20100101 Firefox/144.0'}
+  headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0'}
   try:
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     tables = pd.read_html(StringIO(response.text))
-    symbols = tables[0]['Symbol'].tolist()
+    symbols = tables[1]['Symbol'].tolist()
     return symbols
   except requests.exceptions.RequestException as e:
     print(f"Error occurred during HTTP request: {e}")

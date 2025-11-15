@@ -26,7 +26,6 @@ Goal: create supervised-learning target.
 Program should:
 1. Define future return r_{t+1} = (P_{t+1}/P_t - 1).
 2. Label as:
-   - regression target → r_{t+1}
    - classification target → 1 if r_{t+1} > 0 else 0
 3. Align features so labels are forward-shifted.
 
@@ -38,10 +37,8 @@ Program should:
 1. Split data chronologically (train / validate / test).
 2. Train baseline models:
    - Logistic Regression
-   - Random Forest
    - Gradient Boosting
-3. Evaluate metrics (accuracy, precision, Sharpe).
-4. Save best model artifact (models/{symbol}.pkl).
+3. Evaluate metrics 
 
 STAGE 5 – BACKTESTING
 ================================
@@ -49,46 +46,14 @@ Goal: simulate trading using predictions.
 
 Program should:
 1. Generate daily signals (+1 = buy, 0 = flat).
-2. Apply transaction costs (e.g. 0.1%).
-3. Compute cumulative return, drawdown, Sharpe ratio.
-4. Plot equity curve.
-5. Log metrics to results/.
+2. Plot equity curve.
+3. Log metrics
 
-STAGE 6 – LIVE INFERENCE
+PROJECT GOAL
 ================================
-Goal: deploy daily prediction loop.
+Can technical indicators derived from daily SP500 constituent data predict next day price direction better than random or naive baselines?.
 
-Program should:
-1. At market open, pull latest price for each symbol (Alpaca API).
-2. Compute features from most recent window.
-3. Load trained model, predict next-day move.
-4. Record to a signals.csv.
-
-STAGE 7 – ALERTING / MONITORING
-================================
-Goal: deliver actionable info, not manual trades.
-
-Program should:
-1. Summarize top N buy/sell signals.
-2. Send formatted message via Telegram bot.
-3. Log timestamp + predictions.
-4. Run automatically via cron job or cloud function once per day.
-
-STAGE 8 – RESEARCH LOOP
-================================
-Goal: continuous improvement.
-
-Every month:
-- Re-train on new data.
-- Add features or models.
-- Compare performance vs baseline.
-- Archive experiment configs.
-
-RESEARCH GOAL
-================================
-Can technical indicators derived from daily SP500 constituent data predict short-term (1-5 day) price direction better than random or naive baselines?.
-
-Recordings
+RECORDINGS
 ================================
    Random backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields -0.50% ($995.03)
    Naive backtesting from 2019-01-01 to 2025-01-01 with initial capital of $1000 yields +46.3% ($1463.08)
@@ -107,16 +72,19 @@ Recordings
       Final Portfolio Value: $5678.89
       Total Return: 467.89%
 
+
+   Train period: 2019-03-29 00:00:00 to 2022-12-30 00:00:00
+   Test period: 2023-01-03 00:00:00 to 2024-12-30 00:00:00
+   Train samples: 462421, Test samples: 248820
+
    Logistic Regression Backtest:
    - Initial Capital: $1000
-   - Training occurred from 2019-01-01 to 2023-01-01
-      Final Portfolio Value: $2911.10
-      Total Return: 191.11%
+      Final Portfolio Value: $1262.51
+      Total Return: 26.25%
    
    XGBoost Backtest:
    - Initial Capital: $1000
-   - Training occurred from 2019-01-01 to 2023-01-01
-      Final Portfolio Value: $5678.89
-      Total Return: 467.89%
-
-Additional Indicators to consider: hma, zlhma
+      Final Portfolio Value: $1639.21
+      Total Return: 63.92%
+   
+   **BACKTESTING DOES NOT ACCOUNT FOR SLIIPPAGE OR TRANSACTION COST, % SHOULD BE LOWER THAN WHAT IS CURRENTLY IS**
