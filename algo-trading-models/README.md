@@ -73,8 +73,8 @@ RECORDINGS
       Total Return: 467.89%
 
 
-   Train period: 2019-03-29 00:00:00 to 2022-12-30 00:00:00
-   Test period: 2023-01-03 00:00:00 to 2024-12-30 00:00:00
+   Train period: 2019-03-29 to 2022-12-30
+   Test period: 2023-01-03 to 2024-12-30
    Train samples: 462421, Test samples: 248820
 
    Logistic Regression Backtest:
