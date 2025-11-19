@@ -26,9 +26,9 @@ Used for baseline comparisons.
 ### **2. Ridge Regression (L2)**
 Closed-form:
 
-\[
+$$
 \hat\beta = (X^T X + \lambda I)^{-1} X^T y
-\]
+$$
 
 Include:
 - configurable λ  
