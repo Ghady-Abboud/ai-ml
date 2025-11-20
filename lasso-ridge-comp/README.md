@@ -8,15 +8,13 @@ This project implements **ridge regression** and **lasso regression** from scrat
 - Implement OLS, ridge, and lasso cleanly from scratch.  
 - Study how L1 and L2 regularization affect coefficient shrinkage, sparsity, and error.  
 - Produce controlled experiments and clear visualizations that demonstrate these effects.  
-- Show understanding of statistical learning concepts at a solid undergraduate level.
 
 ---
 
 ## Core Components
 
 ### **1. Linear Regression (Baseline)**
-- Closed-form OLS  
-- Gradient descent version  
+- Closed-form OLS (Gradient Descent)
 - MSE metric  
 - Prediction function  
 Used for baseline comparisons.
