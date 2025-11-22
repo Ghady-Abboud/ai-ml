@@ -5,7 +5,7 @@ This project implements **ridge regression** and **lasso regression** from scrat
 ---
 
 ## Goals
-- Implement OLS, ridge, and lasso cleanly from scratch.  
+- Implement ridge, and lasso cleanly from scratch.  
 - Study how L1 and L2 regularization affect coefficient shrinkage, sparsity, and error.  
 - Produce controlled experiments and clear visualizations that demonstrate these effects.  
 
@@ -13,15 +13,7 @@ This project implements **ridge regression** and **lasso regression** from scrat
 
 ## Core Components
 
-### **1. Linear Regression (Baseline)**
-- Closed-form OLS (Gradient Descent)
-- MSE metric  
-- Prediction function  
-Used for baseline comparisons.
-
----
-
-### **2. Ridge Regression (L2)**
+### **1. Ridge Regression (L2)**
 Closed-form:
 
 $$
@@ -37,7 +29,7 @@ Include:
 
 ---
 
-### **3. Lasso Regression (L1)**
+### **2. Lasso Regression (L1)**
 Implemented with **coordinate descent**, following ISL.
 
 Include:
@@ -51,7 +43,7 @@ This is the most important part of the project.
 
 ---
 
-### **4. Regularization Paths**
+### **3. Regularization Paths**
 Generate full regularization paths for both ridge and lasso:
 - For each λ, fit model and store coefficients.  
 - Plot **coefficient values vs λ** for both methods.  
@@ -59,7 +51,7 @@ These visualizations clearly show the difference between L1 and L2 behavior.
 
 ---
 
-### **5. Real Datasets**
+### **4. Real Datasets**
 Use two small regression datasets (e.g., Boston Housing + one UCI dataset).  
 For each dataset:
 - baseline OLS performance  
@@ -72,7 +64,7 @@ For each dataset:
 
 ---
 
-### **6. High-Dimensional Synthetic Data**
+### **5. High-Dimensional Synthetic Data**
 Generate a dataset where:
 - features p >> samples n  
 - true coefficient vector is sparse  
