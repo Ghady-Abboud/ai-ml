@@ -14,11 +14,8 @@ This project implements **ridge regression** and **lasso regression** from scrat
 ## Core Components
 
 ### **1. Ridge Regression (L2)**
-Closed-form:
 
-$$
-\hat\beta = (X^T X + \lambda I)^{-1} X^T y
-$$
+![alt text](image.png)
 
 Include:
 - configurable λ  
