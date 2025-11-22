@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 utils/get_data.py
+python3 src/main.py
