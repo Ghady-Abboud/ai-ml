@@ -27,7 +27,9 @@ Include:
 ---
 
 ### **2. Lasso Regression (L1)**
-Implemented with **coordinate descent**, following ISL.
+Implemented with **coordinate descent**.
+
+> **Reference:** [Coordinate Descent for Lasso Regression](https://xavierbourretsicotte.github.io/lasso_implementation.html#Implementing-coordinate-descent-for-lasso-regression-in-Python)
 
 Include:
 - soft-thresholding operator  
@@ -35,8 +37,6 @@ Include:
 - warm-start support  
 - λ sweep  
 - plots of **sparsity vs λ** and **lasso coefficient paths**
-
-This is the most important part of the project.
 
 ---
 
