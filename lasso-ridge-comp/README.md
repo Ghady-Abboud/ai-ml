@@ -28,6 +28,8 @@ Include:
 ### **2. Lasso Regression (L1)**
 Implemented with **coordinate descent**.
 
+![alt text](images/lasso_equation.png)
+
 > **Reference:** [Coordinate Descent for Lasso Regression](https://xavierbourretsicotte.github.io/lasso_implementation.html#Implementing-coordinate-descent-for-lasso-regression-in-Python)
 
 Include:
