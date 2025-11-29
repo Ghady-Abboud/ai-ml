@@ -15,7 +15,7 @@ This project implements **ridge regression** and **lasso regression** from scrat
 
 ### **1. Ridge Regression (L2)**
 
-![alt text](images/ridge.png)
+![alt text](images/ridge_equation.png)
 
 Include:
 - configurable α  
