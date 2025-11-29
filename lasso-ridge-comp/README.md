@@ -18,11 +18,10 @@ This project implements **ridge regression** and **lasso regression** from scrat
 ![alt text](images/ridge.png)
 
 Include:
-- configurable λ  
-- coefficient shrinkage tracking  
+- configurable α  
 - MSE evaluation  
-- λ sweep on a log scale  
-- plots of **test error vs λ** and **coefficient magnitudes vs λ**
+- α sweep on a log scale  
+- plots of **test error vs α** and **coefficient magnitudes vs α**
 
 ---
 
@@ -35,15 +34,15 @@ Include:
 - soft-thresholding operator  
 - convergence stopping condition  
 - warm-start support  
-- λ sweep  
-- plots of **sparsity vs λ** and **lasso coefficient paths**
+- α sweep  
+- plots of **sparsity vs α** and **lasso coefficient paths**
 
 ---
 
 ### **3. Regularization Paths**
 Generate full regularization paths for both ridge and lasso:
-- For each λ, fit model and store coefficients.  
-- Plot **coefficient values vs λ** for both methods.  
+- For each α, fit model and store coefficients.  
+- Plot **coefficient values vs α** for both methods.  
 These visualizations clearly show the difference between L1 and L2 behavior.
 
 ---
@@ -52,8 +51,8 @@ These visualizations clearly show the difference between L1 and L2 behavior.
 Use two small regression datasets (e.g., Boston Housing + one UCI dataset).  
 For each dataset:
 - baseline OLS performance  
-- ridge across λ  
-- lasso across λ  
+- ridge across α
+- lasso across α
 - plots:
   - MSE curves  
   - coefficient shrinkage/sparsity  
