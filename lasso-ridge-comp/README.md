@@ -39,18 +39,9 @@ Include:
 
 ---
 
-### **3. Regularization Paths**
-Generate full regularization paths for both ridge and lasso:
-- For each α, fit model and store coefficients.  
-- Plot **coefficient values vs α** for both methods.  
-These visualizations clearly show the difference between L1 and L2 behavior.
-
----
-
-### **4. Real Datasets**
+### **3. Real Datasets**
 Use two small regression datasets (e.g., Boston Housing + one UCI dataset).  
 For each dataset:
-- baseline OLS performance  
 - ridge across α
 - lasso across α
 - plots:
@@ -60,7 +51,7 @@ For each dataset:
 
 ---
 
-### **5. High-Dimensional Synthetic Data**
+### **4. High-Dimensional Synthetic Data**
 Generate a dataset where:
 - features p >> samples n  
 - true coefficient vector is sparse  
