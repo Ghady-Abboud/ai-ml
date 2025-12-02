@@ -34,7 +34,6 @@ Implemented with **coordinate descent**.
 
 Include:
 - soft-thresholding operator  
-- warm-start support  
 - α sweep  
 - plots of **sparsity vs α** and **lasso coefficient paths**
 

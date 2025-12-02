@@ -1,1 +1,3 @@
 - Warm start is an optimization technique used in Lasso Regression to effectively reduce the number of times the model has to iterate to find a solution, it works by having the initial guess for the coefficients as the final solution from the previous run
+
+- Soft thresholding is used to perform shrinkage and feature selection
