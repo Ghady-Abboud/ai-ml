@@ -1,3 +1,7 @@
 - Warm start is an optimization technique used in Lasso Regression to effectively reduce the number of times the model has to iterate to find a solution, it works by having the initial guess for the coefficients as the final solution from the previous run
 
+- We standardize data because different features are measured with different units, for example a $100k income difference is much more significant than a 10-year age difference when in reality it would probably be the opposite
+
 - Soft thresholding is used to perform shrinkage and feature selection
+
+- The L1 penalty makes the function no longer continously differentiable because of non-smooth absolute component
