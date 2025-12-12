@@ -39,19 +39,10 @@ Include:
 
 ---
 
-### **3. Real Datasets**
-Use two small regression datasets (e.g., Boston Housing + one UCI dataset).  
-For each dataset:
-- ridge across α
-- lasso across α
-- plots:
-  - MSE curves  
-  - coefficient shrinkage/sparsity  
-  - regularization paths  
+### **3. High-Dimensional Synthetic Data**
 
----
+![alt text](images/Lasso-Ridge-Cost-Func.png)
 
-### **4. High-Dimensional Synthetic Data**
 Generate a dataset where:
 - features p >> samples n  
 - true coefficient vector is sparse  
