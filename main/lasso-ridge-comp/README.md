@@ -50,5 +50,12 @@ Generate a dataset where:
 
 Evaluate:
 - ridge’s stability  
-- lasso’s ability to recover the true sparse support  
-- plots comparing true vs estimated coefficients
+- lasso’s ability to recover the true sparse support
+
+Notes:
+- The results obtained by testing Lasso Regression & Ridge Regression on a synthetic dataset where p >> n show that Ridge Regression doesn't perform feature selection, which explains why it performs significantly worse than its counterpart Lasso, which is able to effective zero out a certain coefficient, thus reducing noise and properly selecting the relevant features. Although Ridge Regression is stable for certain datasets, it struggles when the true model is sparse
+
+| Method | Strength | Weakness |
+|--------|----------|----------|
+| **Lasso (L1)** | Feature selection - finds sparse solutions | Can be unstable with correlated features |
+| **Ridge (L2)** | Stable with correlated features | Cannot select features - uses everything |
