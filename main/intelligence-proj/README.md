@@ -48,34 +48,6 @@ Geopolitical tensions escalate unpredictably. This system forecasts escalation r
 3. Dashboard showing risk scores, trends, and recent events
 4. Daily automated data pipeline
 
-## Project Structure
-```
-├── data/
-│   ├── raw/              # GDELT downloads
-│   ├── processed/        # Labeled training data
-│   └── labels.csv        # Manual escalation labels
-├── models/
-│   ├── train.py          # Model training pipeline
-│   ├── inference.py      # Prediction logic
-│   └── weights/          # Saved model checkpoints
-├── api/
-│   ├── main.py           # FastAPI app
-│   ├── routes.py         # Endpoint definitions
-│   └── db.py             # Database interactions
-├── frontend/
-│   ├── src/
-│   └── public/
-├── scripts/
-│   ├── fetch_gdelt.py    # Data collection
-│   └── daily_update.py   # Scheduled predictions
-├── notebooks/
-│   └── eda.ipynb         # Exploratory analysis
-├── tests/
-├── requirements.txt
-├── Dockerfile
-└── README.md
-```
-
 ## Metrics
 
 - **Precision/Recall** on escalation events (target: >0.7)
