@@ -76,32 +76,6 @@ Geopolitical tensions escalate unpredictably. This system forecasts escalation r
 └── README.md
 ```
 
-## Setup
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Download historical data
-python scripts/fetch_gdelt.py --start 2015-01-01 --end 2024-12-01
-
-# Train model
-python models/train.py --config config.yaml
-
-# Run API
-uvicorn api.main:app --reload
-
-# Run frontend
-cd frontend && npm install && npm start
-```
-
-## API Endpoints
-```
-GET  /countries              # List tracked country pairs
-GET  /risk/{pair}            # Current risk score + 30-day forecast
-GET  /events/{pair}          # Recent events (last 7 days)
-POST /predict                # Manual scenario testing
-```
-
 ## Metrics
 
 - **Precision/Recall** on escalation events (target: >0.7)
