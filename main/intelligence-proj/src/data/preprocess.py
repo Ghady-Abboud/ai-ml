@@ -11,6 +11,7 @@ def preprocess_data(input_dir, output_dir):
     """
 
     data = pd.read_csv(os.path.join(input_dir, 'irn_isr_gdelt.csv'))
-    data_cleaned = data.drop(columns=['SOURCEURL'])
+    data_cleaned = data.drop(columns=['SOURCEURL', 'Actor1Code', 'Actor1CountryCode', 'Actor2Code', 'Actor2CountryCode', 'EventBaseCode', 'EventRootCode', 'QuadClass'])
 
     data_cleaned.to_csv(os.path.join(output_dir, 'irn_isr_gdelt_cleaned.csv'), index=False)
+    print(f"Preprocessed data saved to {os.path.join(output_dir, 'irn_isr_gdelt_cleaned.csv')}")
