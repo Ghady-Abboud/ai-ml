@@ -62,6 +62,26 @@ Geopolitical tensions escalate unpredictably. This system forecasts escalation r
 - **Week 11-12:** Dashboard + deployment
 - **Week 13-16:** Testing + refinement
 
+## Project Structure
+
+```
+intelligence-proj/
+├── data/
+│   ├── raw/
+│   └── processed/s
+├── src/
+│   ├── data/
+│   │   └── preprocess.py
+│   ├── models/
+│   │   └── main.py
+│   ├── api/
+│   ├── notebooks/
+│   └── scripts/
+├── requirements.txt
+├── CLAUDE.md
+└── README.md
+```
+
 ## Results
 
 _[To be filled with model performance, example predictions, attention visualizations]_
