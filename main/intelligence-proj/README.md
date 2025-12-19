@@ -68,7 +68,7 @@ Geopolitical tensions escalate unpredictably. This system forecasts escalation r
 intelligence-proj/
 ├── data/
 │   ├── raw/
-│   └── processed/s
+│   └── processed/
 ├── src/
 │   ├── data/
 │   │   └── preprocess.py
