@@ -52,3 +52,4 @@ def predict_intensity(df, text_column='event_text'):
     intensities = []
     for text in df[text_column]:
         result = classifier(text, labels)
+        pred_label = result['labels'][0]
