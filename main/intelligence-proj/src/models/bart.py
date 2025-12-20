@@ -70,6 +70,6 @@ def classify_text_intensity(df, text_column="event_text"):
 
 DATA_PATH = os.getcwd() + "/data/raw/irn_isr_gdelt.csv"
 EVENT_TEXT_COL = "event_text"
-df_raw = load_data(DATA_PATH).head(10)
+df_raw = load_data(DATA_PATH)
 df_raw[EVENT_TEXT_COL] = df_raw.apply(create_event_text, axis=1)
 scored_df = classify_text_intensity(df_raw, text_column=EVENT_TEXT_COL)
