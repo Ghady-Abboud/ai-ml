@@ -1,0 +1,1 @@
+python3 ~/projects/ai-ml/main/intelligence-proj/src/models/main.py
