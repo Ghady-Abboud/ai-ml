@@ -1,4 +1,6 @@
 import os
+from src.data.preprocess import preprocess
+
 
 def load_data(file_path):
   """
@@ -12,7 +14,7 @@ def load_data(file_path):
   """
   import pandas as pd
 
-  data = pd.read_csv(file_path)
+  data = preprocess(pd.read_csv(file_path))
   return data
 
 def create_event_text(row):
