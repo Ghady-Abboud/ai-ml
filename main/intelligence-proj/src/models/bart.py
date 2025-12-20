@@ -1,8 +1,8 @@
 import os
-from src.data.preprocess import preprocess
 
 
 def load_data(file_path):
+  from src.data.preprocess import preprocess
   """
   Load data from a given file path.
 
