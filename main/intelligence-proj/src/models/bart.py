@@ -1,20 +1,19 @@
 import os
 
-
 def load_data(file_path):
-  from src.data.preprocess import preprocess
+  from src.data.preprocess import preprocess_gdelt_data
   """
   Load data from a given file path.
 
   Args:
       file_path (str): The path to the data file.
-  
+
   Returns:
       pd.DataFrame: Loaded data as a pandas DataFrame.
   """
   import pandas as pd
 
-  data = preprocess(pd.read_csv(file_path))
+  data = preprocess_gdelt_data(pd.read_csv(file_path))
   return data
 
 def create_event_text(row):

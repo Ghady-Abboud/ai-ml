@@ -1,14 +1,72 @@
-import os
 import pandas as pd
 
-def preprocess_data(data):
+def preprocess_gdelt_data(data):
     """
-    Clean up and preprocess data files from input_dir and save them to output_dir.
+    Clean up and preprocess GDELT csv files 
 
     Args:
-        input_dir (str): Path to the input directory
-        output_dir (str): Path to the output directory
+        data (pd.DataFrame): Pandas DataFrame
     """
 
     data_cleaned = data.drop(columns=['SOURCEURL', 'Actor1Code', 'Actor1CountryCode', 'Actor2Code', 'Actor2CountryCode', 'EventBaseCode', 'EventRootCode', 'QuadClass'])
     return data_cleaned
+
+def preprocess_acled_data(data):
+    """
+    Clean up and preprocess ACLED csv files
+    Filter for Iran-Israel confrontations including proxies
+
+    Args:
+        data (pd.DataFrame): Pandas DataFrame
+
+    Returns:
+        pd.DataFrame: Filtered dataframe with Iran-Israel related events
+    """
+    import re
+
+    df = data.copy()
+
+    iran_proxies = [
+        'hezbollah', 'hizballah', 'hizbollah',  # Hezbollah (Lebanon)
+        'hamas',  # Hamas (Gaza)
+        'houthi', 'ansar allah',  # Houthis (Yemen)
+        'islamic jihad', 'pij',  # Palestinian Islamic Jihad
+        'popular mobilization', 'pmf', 'hashd',  # Iraqi militias
+        'kataib', 'kata\'ib',  # Kataib Hezbollah (Iraq)
+        'asaib ahl al-haq',  # Iraqi militia
+        'badr'  # Badr Organization (Iraq)
+    ]
+
+    iran_pattern = re.compile(r'iran', re.IGNORECASE)
+    israel_pattern = re.compile(r'israel', re.IGNORECASE)
+    proxy_pattern = re.compile('|'.join(iran_proxies), re.IGNORECASE)
+
+    def is_iran_or_proxy(actor):
+        if pd.isna(actor):
+            return False
+        actor_str = str(actor)
+        return bool(iran_pattern.search(actor_str)) or bool(proxy_pattern.search(actor_str))
+
+    def is_israel(actor):
+        if pd.isna(actor):
+            return False
+        return bool(israel_pattern.search(str(actor)))
+
+    # Filter for Iran-Israel confrontations
+    iran_israel_mask = (
+        (df['actor1'].apply(is_iran_or_proxy) & df['actor2'].apply(is_israel)) |
+        (df['actor1'].apply(is_israel) & df['actor2'].apply(is_iran_or_proxy))
+    )
+
+    df_filtered = df[iran_israel_mask].copy()
+
+    relevant_columns = [
+        'event_date','disorder_type', 'event_type',
+        'sub_event_type', 'actor1', 'actor2',
+    ]
+
+    available_columns = [col for col in relevant_columns if col in df_filtered.columns]
+    df_filtered = df_filtered[available_columns]
+
+    return df_filtered
+
