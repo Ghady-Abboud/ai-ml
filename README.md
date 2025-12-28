@@ -2,6 +2,6 @@ This repository documents my journey in Machine Learning, it contains a mix of p
 
 **Fundamentals** contains projects I created with the purpose of understanding different popular tech stacks utilized in Machine Learning 
 
-**Intermediate** contains mini projets that demonstrate ability to work with pandas, scikit-learn, numpy, matplotlib...
+**Intermediate** contains mini projects that demonstrate ability to work with pandas, scikit-learn, numpy, matplotlib...
 
-**main** contains all the projects that demonstrate my depth of knowledge in different areas of Machine Learning. It could contain derivations and proofs of certains equations and their implementation from scratch as well as comparison and analysis with other known equations 
+**main** contains all the projects that demonstrate my depth of knowledge in different areas of Machine Learning. It could contain derivations and proofs of certain equations and their implementation from scratch as well as comparison and analysis with other known equations 
