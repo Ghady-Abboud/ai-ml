@@ -1,5 +1,3 @@
-import os
-
 def load_data(file_path):
   from src.data.preprocess import preprocess_gdelt_data
   """

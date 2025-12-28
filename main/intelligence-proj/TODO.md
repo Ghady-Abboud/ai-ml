@@ -7,10 +7,10 @@
 ## Next Steps
 
 ### 1. ACLED Data Collection
-- [ ] Set up ACLED API access or download historical data
-- [ ] Fetch conflict events for same countries/time periods as GDELT data
-- [ ] Store ACLED data in structured format (CSV/database)
-- [ ] Align ACLED data timeline with GDELT data
+- [X] Set up ACLED API access or download historical data
+- [X] Fetch conflict events for same countries/time periods as GDELT data
+- [X] Store ACLED data in structured format (CSV/database)
+- [X] Align ACLED data timeline with GDELT data
 
 ### 2. Data Preparation & Labeling
 - [ ] Create labels for each country-pair and time window
