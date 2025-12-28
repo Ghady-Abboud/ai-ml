@@ -60,8 +60,21 @@ def preprocess_acled_data(data):
 
     df_filtered = df[iran_israel_mask].copy()
 
+    def normalize_actor(actor):
+        if pd.isna(actor):
+            return actor
+        actor_str = str(actor)
+        if is_iran_or_proxy(actor_str):
+            return 'IRAN'
+        elif is_israel(actor_str):
+            return 'ISRAEL'
+        return actor
+
+    df_filtered['actor1'] = df_filtered['actor1'].apply(normalize_actor)
+    df_filtered['actor2'] = df_filtered['actor2'].apply(normalize_actor)
+
     relevant_columns = [
-        'event_date','disorder_type', 'event_type',
+        'event_date', 'event_type',
         'sub_event_type', 'actor1', 'actor2',
     ]
 
