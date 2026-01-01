@@ -75,11 +75,22 @@ def preprocess_acled_data(data):
 
     relevant_columns = [
         'event_date', 'event_type',
-        'sub_event_type', 'actor1', 'actor2',
+        'sub_event_type', 'actor1', 'actor2', 'fatalities',
     ]
 
     available_columns = [col for col in relevant_columns if col in df_filtered.columns]
     df_filtered = df_filtered[available_columns]
 
+    # Add severity column based on recent events
+    event_severity_mapping = {
+        'Explosions/Remote violence': '4',
+        'Battles': '4',
+        'Violence against civilians': '3',
+        'Strategic developments': '2',
+        'Riots': '1',
+        'Protests': '0',
+    }
+
+    df_filtered['event_severity'] = df_filtered['event_type'].map(event_severity_mapping)
     return df_filtered
 
