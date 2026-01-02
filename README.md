@@ -104,4 +104,4 @@ This repository represents hands-on learning and project-based skill development
 - **Theory → Practice:** From mathematical derivations to production-ready implementations
 - **Diverse Domains:** Healthcare, finance, geopolitics, statistical learning
 - **Full-Stack ML:** Data pipelines, model training, evaluation, deployment
-- **Research Mindset:** Experimental comparisons, ablation studies, rigorous testing 
+- **Research Mindset:** Experimental comparisons, ablation studies, rigorous testing. 
