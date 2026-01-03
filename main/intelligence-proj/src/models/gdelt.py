@@ -38,7 +38,9 @@ def classify_text_intensity(df, text_column="event_text"):
   classifier = pipeline(
       "zero-shot-classification",
       model="facebook/bart-large-mnli",
-      device=0 if torch.cuda.is_available() else -1
+      device=0 if torch.cuda.is_available() else -1,
+      dtype=torch.float16,
+      batch_size=32
   )
 
   labels = [
@@ -57,12 +59,16 @@ def classify_text_intensity(df, text_column="event_text"):
       "Armed Conflict": 4
   }
 
-  predictions = []
-  for event in df[text_column]:
-    result = classifier(event, labels, multi_label=False)
-    top_label = result["labels"][0]
-    predictions.append(intensity_dict[top_label])
+  texts = df[text_column].tolist()
+  results = classifier(texts, labels, multi_label=False)
+  predictions = [intensity_dict[result['labels'][0]] for result in results]
 
   df = df.copy()
-  df["predicted_label"] = [p for p in predictions]
+  df['predicted_label'] = predictions
   return df
+
+# DATA_PATH = "~/projects/ai-ml/main/intelligence-proj/data/raw/irn_isr_gdelt.csv"
+# EVENT_TEXT_COL = "event_text"
+# df_raw = load_data(DATA_PATH).head(10)
+# df_raw[EVENT_TEXT_COL] = df_raw.apply(create_event_text, axis=1)
+# scored_df = classify_text_intensity(df_raw, text_column=EVENT_TEXT_COL)
