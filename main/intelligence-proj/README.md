@@ -6,12 +6,6 @@ A computational feasibility analysis for predicting geopolitical conflict escala
 
 This project investigates whether machine learning models can predict armed conflict escalation 30 days in advance by analyzing patterns in news event data. The study focuses on the Iran-Israel relationship using two major geopolitical databases: GDELT (Global Database of Events, Language, and Tone) and ACLED (Armed Conflict Location & Event Data).
 
-## Research Question
-
-**Can aggregated news event sentiment and characteristics from GDELT predict actual conflict events recorded in ACLED with a 30-day lead time?**
-
-## Methodology
-
 ### Data Sources
 - **GDELT Event Database**: 300M+ timestamped geopolitical events with sentiment scores, actor information, and Goldstein scale ratings
 - **ACLED Conflict Data**: Verified ground-truth labels for armed conflicts, protests, and political violence
