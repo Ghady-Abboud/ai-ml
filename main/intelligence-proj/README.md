@@ -35,7 +35,7 @@ The project revealed significant computational barriers to implementation:
 - Processing time: Multiple days/months for single country-pair analysis
 
 **Critical Bottleneck:**
-The BERT zero-shot classification model (facebook/bart-large-mnli) must process each GDELT event individually. With hundreds of thousands of events, this becomes computationally prohibitive without access to:
+The BERT zero-shot classification model (facebook/bart-large-mnli) must process each GDELT event individually. With hundreds of millions of events, this becomes computationally prohibitive without access to:
 - Multi-GPU infrastructure
 - Cloud computing budgets
 
