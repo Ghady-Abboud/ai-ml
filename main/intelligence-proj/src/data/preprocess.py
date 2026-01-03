@@ -1,16 +1,5 @@
 import pandas as pd
 
-def preprocess_gdelt_data(data):
-    """
-    Clean up and preprocess GDELT csv files 
-
-    Args:
-        data (pd.DataFrame): Pandas DataFrame
-    """
-
-    data_cleaned = data.drop(columns=['SOURCEURL', 'Actor1Code', 'Actor1CountryCode', 'Actor2Code', 'Actor2CountryCode', 'EventBaseCode', 'EventRootCode', 'QuadClass'])
-    return data_cleaned
-
 def preprocess_acled_data(data):
     """
     Clean up and preprocess ACLED csv files
