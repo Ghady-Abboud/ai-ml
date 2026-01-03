@@ -13,10 +13,10 @@
 - [X] Align ACLED data timeline with GDELT data
 
 ### 2. Data Preparation & Labeling
-- [ ] Create labels for each country-pair and time window
+- [X] Create labels for each country-pair and time window
   - Binary: Did conflict occur in next 30 days? (yes/no)
   - Or count: Number of escalation events in next 30 days
-- [ ] Aggregate GDELT severity scores into features per country-pair:
+- [X] Aggregate GDELT severity scores into features per country-pair:
   - Average severity over past 7/14/30 days
   - Max severity over past 7/14/30 days
   - Severity trend (increasing/decreasing)
