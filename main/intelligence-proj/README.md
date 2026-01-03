@@ -1,66 +1,49 @@
-# Geopolitical Tension Forecaster
+# Conflict Escalation Prediction: A Feasibility Study
 
-Real-time dashboard predicting conflict escalation across country pairs using machine learning on news and event data.
+A computational feasibility analysis for predicting geopolitical conflict escalation using machine learning on large-scale event databases.
 
-## Problem
+## Overview
 
-Geopolitical tensions escalate unpredictably. This system forecasts escalation risk 30 days ahead across multiple severity levels, from diplomatic protests to armed conflict.
+This project investigates whether machine learning models can predict armed conflict escalation 30 days in advance by analyzing patterns in news event data. The study focuses on the Iran-Israel relationship using two major geopolitical databases: GDELT (Global Database of Events, Language, and Tone) and ACLED (Armed Conflict Location & Event Data).
 
-## Approach
+## Research Question
 
-**Data Sources:**
-- GDELT Event Database (300M+ geopolitical events)
-- ACLED Conflict Data (ground truth labels)
-- News articles via GDELT URLs
+**Can aggregated news event sentiment and characteristics from GDELT predict actual conflict events recorded in ACLED with a 30-day lead time?**
 
-**Model:**
-- Fine-tuned DistilBERT on news headlines
-- XGBoost classifier on combined text embeddings + structured event features
-- Predicts escalation level: 0 (stable) → 4 (armed conflict)
+## Methodology
 
-**Features:**
-- 7-day sliding window of event frequencies by type
-- News sentiment and entity mentions
-- Historical tension patterns
+### Data Sources
+- **GDELT Event Database**: 300M+ timestamped geopolitical events with sentiment scores, actor information, and Goldstein scale ratings
+- **ACLED Conflict Data**: Verified ground-truth labels for armed conflicts, protests, and political violence
 
-## Tech Stack
+### Proposed Approach
+1. Extract GDELT events for country pairs over matching time periods
+2. Use BERT-based zero-shot classification to score event severity (0-4 scale)
+3. Create 30-day rolling windows of GDELT data before each ACLED event
+4. Aggregate features: max severity, average sentiment, event counts, Goldstein scores
+5. Evaluate if GDELT signals correlate with subsequent ACLED conflict events
 
-- **ML:** HuggingFace, scikit-learn
-- **Backend:** FastAPI
-- **Frontend:** React + Recharts
-- **Deploy:** Docker, Render/Railway
+### Severity Scale
+- **0**: Stable/Cooperative interactions
+- **1**: Verbal tension
+- **2**: Diplomatic crisis
+- **3**: Military posturing
+- **4**: Armed conflict
 
-## MVP Scope
+### Key Findings
 
-**Country Pairs (8):**
-- Russia-Ukraine
-- India-Pakistan
-- China-Taiwan
-- Israel-Iran
-- North Korea-South Korea
-- Armenia-Azerbaijan
-- India-China
-- Turkey-Greece
+The project revealed significant computational barriers to implementation:
 
-**Deliverables:**
-1. Trained model with >70% accuracy on held-out escalations
-2. REST API serving predictions
-3. Dashboard showing risk scores, trends, and recent events
-4. Daily automated data pipeline
+**Scale Analysis:**
+- Iran-Israel dataset: ~45000+ ACLED events requiring prediction
+- Average GDELT events per 30-day window: ~4000 events
+- Total inference operations: 180 MILLION BERT classifications
+- Processing time: Multiple days/months for single country-pair analysis
 
-## Metrics
-
-- **Precision/Recall** on escalation events (target: >0.7)
-- **Early warning time** (avg days before actual escalation)
-- **False positive rate** (critical for usability)
-
-## Timeline
-
-- **Week 1-4:** Data collection + labeling
-- **Week 5-8:** Model training + evaluation
-- **Week 9-10:** API development
-- **Week 11-12:** Dashboard + deployment
-- **Week 13-16:** Testing + refinement
+**Critical Bottleneck:**
+The BERT zero-shot classification model (facebook/bart-large-mnli) must process each GDELT event individually. With hundreds of thousands of events, this becomes computationally prohibitive without access to:
+- Multi-GPU infrastructure
+- Cloud computing budgets
 
 ## Project Structure
 
@@ -74,17 +57,12 @@ intelligence-proj/
 │   │   └── preprocess.py
 │   ├── models/
 │   │   └── main.py
-│   ├── api/
 │   ├── notebooks/
 │   └── scripts/
 ├── requirements.txt
 ├── CLAUDE.md
 └── README.md
 ```
-
-## Results
-
-_[To be filled with model performance, example predictions, attention visualizations]_
 
 ## References
 
