@@ -11,6 +11,9 @@ def load_data(file_path):
   import pandas as pd
 
   data = pd.read_csv(file_path)
+  data['date'] = pd.to_datetime(data['SQLDATE'].astype(str), format='%Y%m%d')
+  data = data.sort_values('date').reset_index(drop=True)
+  data = data.drop(columns=['SQLDATE'])
   return data
 
 def create_event_text(row):

@@ -4,13 +4,12 @@ def load_data(file_path):
   from src.data.preprocess import preprocess_acled_data
   
   data = preprocess_acled_data(pd.read_csv(file_path))
+  data['event_date'] = pd.to_datetime(data['event_date'])
+  data = data.sort_values('event_date').reset_index(drop=True)
   return data
 
 def did_conflict_occur(data):
   data_cp = data.copy()
-
-  data_cp['event_date'] = pd.to_datetime(data_cp['event_date'])
-  data_cp = data_cp.sort_values(by='event_date')
 
   data_cp['event_severity'] = pd.to_numeric(data_cp['event_severity'], errors='coerce')
 
