@@ -1,6 +1,6 @@
 # AI/ML Projects
 
-A collection of machine learning projects ranging from fundamentals to applied systems.
+A collection of machine learning projects I've worked on over the past 3-4 months in my spare time.
 
 ---
 
